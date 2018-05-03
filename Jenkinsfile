@@ -9,17 +9,30 @@ pipeline {
     stage('New') {
       steps {
         sh 'dotnet new console'
-        sh 'dotnet run'
       }
     }
-    stage('publish') {
+    stage('test') {
       steps {
-        sh 'dotnet publish'
+        sh 'dotnet test'
       }
     }
     stage('build') {
+      parallel {
+        stage('build') {
+          steps {
+            sh 'dotnet msbuild'
+          }
+        }
+        stage('publish') {
+          steps {
+            sh 'dotnet publish'
+          }
+        }
+      }
+    }
+    stage('store') {
       steps {
-        sh 'dotnet msbuild'
+        sh 'dotnet store'
       }
     }
   }
