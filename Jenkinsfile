@@ -11,12 +11,6 @@ pipeline {
         sh 'dotnet new console'
       }
     }
-    stage('test') {
-      steps {
-        sh 'dotnet add package Microsoft.NET.Test.Sdk --version 15.7.0'
-        sh 'dotnet test'
-      }
-    }
     stage('build') {
       parallel {
         stage('build') {
@@ -32,6 +26,12 @@ pipeline {
       }
     }
     stage('store') {
+      steps {
+        sh 'dotnet add package Microsoft.NET.Test.Sdk --version 15.7.0'
+        sh 'dotnet test'
+      }
+    }
+    stage('') {
       steps {
         sh 'dotnet store'
       }
