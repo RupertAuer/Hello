@@ -12,17 +12,8 @@ pipeline {
       }
     }
     stage('build') {
-      parallel {
-        stage('build') {
-          steps {
-            sh 'dotnet msbuild'
-          }
-        }
-        stage('publish') {
-          steps {
-            sh 'dotnet publish'
-          }
-        }
+      steps {
+        sh 'dotnet msbuild'
       }
     }
     stage('store') {
@@ -31,7 +22,7 @@ pipeline {
         sh 'dotnet test'
       }
     }
-    stage('') {
+    stage('error') {
       steps {
         sh 'dotnet store'
       }
