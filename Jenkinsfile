@@ -6,7 +6,7 @@ pipeline {
 
   }
   stages {
-    stage('error') {
+    stage('New') {
       steps {
         sh 'dotnet new console'
         sh 'dotnet run'
@@ -15,6 +15,11 @@ pipeline {
     stage('publish') {
       steps {
         sh 'dotnet publish'
+      }
+    }
+    stage('build') {
+      steps {
+        sh 'dotnet msbuild'
       }
     }
   }
