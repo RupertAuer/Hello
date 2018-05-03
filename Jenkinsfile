@@ -21,10 +21,5 @@ pipeline {
         sh 'dotnet run'
       }
     }
-    stage('Store') {
-      steps {
-        sh 'dotnet store'
-      }
-    }
   }
 }
