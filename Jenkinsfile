@@ -16,13 +16,12 @@ pipeline {
         sh 'dotnet msbuild'
       }
     }
-    stage('test') {
+    stage('Run') {
       steps {
-        sh 'dotnet add package Microsoft.NET.Test.Sdk --version 15.7.0'
-        sh 'dotnet test /main'
+        sh 'dotnet run'
       }
     }
-    stage('error') {
+    stage('Store') {
       steps {
         sh 'dotnet store'
       }
