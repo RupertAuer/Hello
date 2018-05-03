@@ -13,6 +13,7 @@ pipeline {
     }
     stage('test') {
       steps {
+        sh 'Install-Package Microsoft.NET.Test.Sdk -Version 15.7.0'
         sh 'dotnet test'
       }
     }
